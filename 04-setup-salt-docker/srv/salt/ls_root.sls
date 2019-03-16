@@ -1,0 +1,2 @@
+ls /:
+  cmd.run

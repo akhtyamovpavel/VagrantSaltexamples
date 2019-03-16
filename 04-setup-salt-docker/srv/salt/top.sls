@@ -1,0 +1,3 @@
+base:
+  '*':
+    - ls_root

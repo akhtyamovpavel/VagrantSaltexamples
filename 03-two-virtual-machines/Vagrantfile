@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+
+  config.vm.box_url = "Vagrantfile"
+
+  config.vm.define "nginx_host" do |nginx_host|
+	  nginx_host.vm.network "private_network", ip: "192.168.50.10"
+	  nginx_host.vm.network "forwarded_port", guest: 80, host: 8899
+	  nginx_host.vm.provision "shell", inline: <<-SHELL
+		 apt-get update
+		 apt-get install -y nginx
+		 service nginx start
+	  SHELL
+  end
+
+  config.vm.define "apache_host" do |apache_host|
+	  apache_host.vm.network "private_network", ip: "192.168.50.20"
+	  apache_host.vm.network "forwarded_port", guest: 80, host: 8898
+	  apache_host.vm.provision "shell", inline: <<-SHELL
+	    apt-get update
+		apt-get install -y apache2
+		service apache2 start
+	  SHELL
+  end
+end
