@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
 	config.vm.box_url = "Vagrantfile"
   
 	config.vm.provider "virtualbox" do |vb|
-		 vb.gui = true
+		vb.gui = false
 		vb.memory = "1024"
 	end
 	
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
 			saltmaster.install_type = "stable"
 			saltmaster.verbose = true
 			saltmaster.colorize = true
-			saltmaster.bootstrap_options = "-P -c /tmp"
+			saltmaster.bootstrap_options = "-F -P -c /tmp"
 		end
 	end
 
@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
 			saltminion.install_type = "stable"
 			saltminion.verbose = true
 			saltminion.colorize = true
-			saltminion.bootstrap_options = "-P -c /tmp"
+			saltminion.bootstrap_options = "-F -P -c /tmp"
 		end
 	end
 end
