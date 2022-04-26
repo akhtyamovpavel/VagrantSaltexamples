@@ -9,3 +9,8 @@ homyak:
   user.present:
     - fullname: Homyak Homyakov
     - home: /home/homyak
+
+test:
+  user.present:
+    - shell: /bin/bash
+    - home: /home/test_user
